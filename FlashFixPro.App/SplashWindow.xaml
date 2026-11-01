@@ -1,0 +1,20 @@
+<Window x:Class="FlashFixPro.App.SplashWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="FlashFix Pro by RashiTec"
+        Width="480" Height="280"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent">
+    <Border CornerRadius="18" Background="#111827" Padding="36">
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Text="FLASHFIX PRO" Foreground="White" FontSize="30" FontWeight="Bold"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="RashiTec" Foreground="#60A5FA" FontSize="16" FontWeight="SemiBold"
+                       Margin="0,8,0,24" HorizontalAlignment="Center"/>
+            <ProgressBar x:Name="StartupProgress" Height="6" IsIndeterminate="True"
+                         Foreground="#60A5FA" Background="#334155"/>
+            <TextBlock x:Name="StartupStatus" Text="Starting RashiTec storage tools..."
+                       Foreground="#CBD5E1" Margin="0,14,0,0" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Border>
+</Window>

@@ -1,0 +1,140 @@
+﻿<Window x:Class="FlashFixPro.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlashFixPro.App"
+        mc:Ignorable="d"
+        Title="FlashFix Pro by RashiTec" Height="720" Width="1120"
+        MinHeight="600" MinWidth="900"
+        Background="#F4F7FB">
+    <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryBrush" Color="#2563EB"/>
+        <SolidColorBrush x:Key="DangerBrush" Color="#DC2626"/>
+        <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF"/>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="14,8"/>
+            <Setter Property="MinWidth" Value="92"/>
+            <Setter Property="Margin" Value="4"/>
+        </Style>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Background="#172033">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="20,24">
+                    <TextBlock Text="FLASHFIX" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock Text="PRO" Foreground="#60A5FA" FontSize="11" FontWeight="SemiBold"/>
+                    <TextBlock Text="by RashiTec" Foreground="#94A3B8" FontSize="11" Margin="0,6,0,0"/>
+                </StackPanel>
+                <StackPanel Margin="12,12">
+                    <Button Content="Dashboard" Background="#2563EB" Foreground="White" BorderThickness="0"/>
+                    <Button Content="Connected Devices" Background="Transparent" Foreground="#CBD5E1" BorderThickness="0"/>
+                    <Button Content="Recover Files" Background="Transparent" Foreground="#CBD5E1" BorderThickness="0"/>
+                    <Button Content="Create Disk Image" Background="Transparent" Foreground="#CBD5E1" BorderThickness="0"/>
+                    <Button Content="Diagnose" Background="Transparent" Foreground="#CBD5E1" BorderThickness="0"/>
+                    <Button Content="Reports" Background="Transparent" Foreground="#CBD5E1" BorderThickness="0"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom" Margin="20,12">
+                    <TextBlock Foreground="#94A3B8" TextWrapping="Wrap" Text="Offline storage safety tools"/>
+                    <TextBlock Foreground="#64748B" FontSize="10" Margin="0,10,0,0" Text="RashiTec"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="28">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="190"/>
+            </Grid.RowDefinitions>
+
+            <DockPanel>
+                <StackPanel>
+                    <TextBlock Text="Storage dashboard" FontSize="26" FontWeight="Bold" Foreground="#111827"/>
+                    <TextBlock Text="Detect, diagnose, and recover removable storage safely."
+                               Foreground="#64748B" Margin="0,4,0,0"/>
+                </StackPanel>
+                <Button x:Name="ScanButton" DockPanel.Dock="Right" VerticalAlignment="Top"
+                        Content="Scan devices" Background="{StaticResource PrimaryBrush}"
+                        Foreground="White" BorderThickness="0"/>
+            </DockPanel>
+
+            <Grid Grid.Row="1" Margin="0,22,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="270"/>
+                </Grid.ColumnDefinitions>
+
+                <ListBox x:Name="DeviceList" Background="Transparent" BorderThickness="0"
+                         SelectionChanged="DeviceList_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Background="White" CornerRadius="10" Padding="16" Margin="0,0,8,8"
+                                    BorderBrush="#E2E8F0" BorderThickness="1">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Model}" FontSize="17" FontWeight="SemiBold"/>
+                                        <TextBlock Foreground="#64748B" Margin="0,3">
+                                            <Run Text="Disk "/><Run Text="{Binding DiskNumber}"/>
+                                            <Run Text=" • "/><Run Text="{Binding InterfaceType}"/>
+                                            <Run Text=" • "/><Run Text="{Binding DisplaySize}"/>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding StatusText}" Foreground="#2563EB" Margin="0,5,0,0"/>
+                                    </StackPanel>
+                                    <Border Grid.Column="1" Background="#EFF6FF" CornerRadius="12" Padding="10,5">
+                                        <TextBlock Text="{Binding SafetyText}" FontWeight="SemiBold" Foreground="#1D4ED8"/>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Border Grid.Column="1" Background="White" CornerRadius="10" Padding="18"
+                        BorderBrush="#E2E8F0" BorderThickness="1">
+                    <StackPanel>
+                        <TextBlock Text="Selected device" FontSize="17" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="SelectedName" Margin="0,14,0,4" FontWeight="SemiBold" Text="No device selected"/>
+                        <TextBlock x:Name="SelectedDetails" Foreground="#64748B" TextWrapping="Wrap"/>
+                        <Separator Margin="0,16"/>
+                        <Button x:Name="DiagnoseButton" Content="Diagnose"
+                                Background="#EFF6FF" Foreground="#1D4ED8"/>
+                        <Button x:Name="RecoveryButton" Content="Read-only recovery scan"/>
+                        <Button x:Name="CapacityButton" Content="Verify test image"/>
+                        <TextBlock Text="Destructive operations are deliberately not exposed in this first milestone."
+                                   Foreground="#94A3B8" TextWrapping="Wrap" Margin="4,10"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Grid.Row="2" Background="#111827" CornerRadius="10" Padding="16">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top" Text="Operation log" Foreground="White" FontWeight="SemiBold"/>
+                    <Grid x:Name="OperationProgress" DockPanel.Dock="Bottom" Margin="0,8,0,0" Visibility="Collapsed">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock x:Name="OperationStatus" Foreground="#BFDBFE" FontSize="11"/>
+                        <ProgressBar Grid.Row="1" x:Name="LoadingProgress" Height="4" Margin="0,6,0,0"
+                                     IsIndeterminate="True" Foreground="#60A5FA" Background="#334155"/>
+                    </Grid>
+                    <ListBox x:Name="OperationLog" Background="Transparent" BorderThickness="0"
+                             Foreground="#E2E8F0" Margin="0,10,0,0"/>
+                </DockPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

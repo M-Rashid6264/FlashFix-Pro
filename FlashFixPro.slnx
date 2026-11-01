@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="FlashFixPro.App/FlashFixPro.App.csproj" />
+  <Project Path="FlashFixPro.Core/FlashFixPro.Core.csproj" />
+  <Project Path="FlashFixPro.Tests/FlashFixPro.Tests.csproj" />
+</Solution>

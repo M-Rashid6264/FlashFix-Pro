@@ -1,0 +1,9 @@
+﻿<Application x:Class="FlashFixPro.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FlashFixPro.App"
+             Startup="ApplicationStartup">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
